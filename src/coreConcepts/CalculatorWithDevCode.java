@@ -30,6 +30,12 @@ public class CalculatorWithDevCode
 		int sum = a+b;
 		System.out.println("Sum of two numbers :" + sum);
 	}
+	//********************Dev code ********************************
+		public void subtraction(int a,int b) // Dev code
+		{
+			int diff = a-b;
+			System.out.println("Difference of two numbers :" + diff);
+		}
 	
 
 }
