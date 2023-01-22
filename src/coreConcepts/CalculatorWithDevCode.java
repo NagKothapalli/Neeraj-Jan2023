@@ -41,6 +41,8 @@ public class CalculatorWithDevCode
 			int prod = a*b;
 			System.out.println("Product of two numbers :" + prod);
 		}
-	
+	//Create a Git Hub account , Publish local repository as Git repo , do some changes , commmit the changes with a comment
+	  //push the code to origin
+	//Open GitHub application , Clone the remote repo in to local , Pull the latest from remote in to your local
 
 }
