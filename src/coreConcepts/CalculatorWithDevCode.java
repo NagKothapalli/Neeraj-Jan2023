@@ -36,6 +36,11 @@ public class CalculatorWithDevCode
 			int diff = a-b;
 			System.out.println("Difference of two numbers :" + diff);
 		}
+	public void multiplication(int a,int b) // Dev code
+		{
+			int prod = a*b;
+			System.out.println("Product of two numbers :" + prod);
+		}
 	
 
 }
