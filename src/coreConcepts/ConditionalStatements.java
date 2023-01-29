@@ -108,6 +108,48 @@ public class ConditionalStatements
 		}
 	}
 	
+	//WAP to read two integers as input and perform the below task if and only if both inputs are above 10 
+	//Task : sum of two numbers if equal , a>b do subtraction , a<b do multiplication
+	@Test
+	public void nestedifCondition_test()
+	{
+		nestedifCondition(5,8);
+		nestedifCondition(55,8);
+		nestedifCondition(5,78);
+		nestedifCondition(55,55);
+		nestedifCondition(55,48);
+		nestedifCondition(15,78);
+	}
+	public void nestedifCondition(int one,int two)
+	{
+		System.out.println("First Number :"+ one);
+		System.out.println("Second Number :"+ two);
+		if((one>10) && (two>10)) // Outer if  // T and T -> true  // && - Logical Operator
+		{ //true
+			//Task
+			if(one==two) // Nested if Condition - inner if // == , > , < : Relational Operators
+			{ //true
+				//TASK
+				int sum = one+two; // + , _ , * : Arithmetic Operators
+				System.out.println("Sum of two numbers :" + sum);
+			}
+			else if(one>two)
+			{ //false
+				int diff = one-two; // = : Assignment Operator
+				System.out.println("Difference of two numbers :" + diff);
+			}
+			else if(one<two)
+			{
+				int prod = one*two;
+				System.out.println("Product of two numbers:"+prod);
+			}
+		}
+		else
+		{  //false
+		   System.out.println("Both inputs or any one of them might be below 10");
+		}
+	}
+	
 	public void thisIsNonStatic()
 	{
 		System.out.println("This is my Non Static Function");
@@ -117,6 +159,79 @@ public class ConditionalStatements
 		System.out.println("This is my Static Function");
 	}
 	//switch case , Nested if
+	
+	//WAP to print the class of the student by taking grade as input
+	@Test
+	public void printStudentPassedClass_test()
+	{
+		printStudentPassedClass('A');
+		printStudentPassedClass('F');
+		printStudentPassedClass('D');
+		printStudentPassedClass('G');
+		printStudentPassedClass('B');
+		printStudentPassedClass('E');
+		printStudentPassedClass('C');
+		printStudentPassedClass('K');
+		printStudentPassedClass('M');
+	}
+	
+	public void printStudentPassedClass(char grade)
+	{
+		System.out.println("Grade of the student : " + grade);
+		switch(grade)
+		{
+			case 'A' :
+			{
+				System.out.println("Student passed in First class with Distinction");
+				break; // it will take the control out of the switch block
+			}
+			case 'B' :
+			{
+				System.out.println("Student passed in First class ");
+				break;
+			}
+			case 'C' :
+			{
+				System.out.println("Student passed in Second class ");
+				break;
+			}
+			case 'D' :
+			{
+				System.out.println("Student passed in Third class ");
+				break;
+			}
+			case 'E' :
+			{
+				System.out.println("Student passed in Ordinary class ");
+				break;
+			}
+			case 'F' :
+			{
+				System.out.println("Student Failed ");
+				break;
+			}
+			default :
+			{
+				System.out.println("The given grade is not valid ");
+				break;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
