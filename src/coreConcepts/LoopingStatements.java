@@ -122,7 +122,22 @@ public class LoopingStatements
 	
 	//Nested Loop
 	
+	//WAP to apply color to a building with ten floors and each floor having 20 steps
 	
+	//Loop 1 [outer loop] is responsible for floors - in each floor we will change the color
+	 // Loop 2 [Inner loop] is responsible to apply color to individual steps in the floor
+	@Test
+	public void applyColorToTenFloors()
+	{
+		for(int floor=1; floor<=10; floor++)
+		{
+			System.out.println("*************Start applying color to Floor Number :" + floor);
+			for(int step=1;step<=20;step++) //Floor = 1 , Step = 1 ........20 , //Floor = 2 , Step = 1 ........20 ,
+			{
+				System.out.println("Apply Color to Step Number :" + step);
+			}
+		}
+	}
 	
 	
 	
