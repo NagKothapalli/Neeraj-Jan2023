@@ -3,23 +3,22 @@ package simpleInheritance;
 import org.junit.Test;
 
 public class ReusableComponents
-{
-	
+{	
 	//**********************Reusable Components****************************
-	public void launchApplication()
+	protected void launchApplication()
 	{
-		System.out.println("RC : Launch Application");
+		System.out.println("RC : Launch Application from RC");
 		//all steps to launch has to be written here
 	}
-	public void loginToApplication()
+	void loginToApplication()
 	{
 		System.out.println("RC : Login To Application");
 	}
-	public void logoutFromApplication()
+	void logoutFromApplication()
 	{
 		System.out.println("RC : Logout From Application");
 	}
-	public void closeApplication()
+	void closeApplication()
 	{
 		System.out.println("RC : Close Application");
 	}
@@ -31,11 +30,11 @@ public class ReusableComponents
     {
     	System.out.println("RC : Send Mail");
     }
-    public void open()
+    void open()
     {
     	System.out.println("RC : Open Mail");
     }
-    public void reply()
+    protected void reply()
     {
     	System.out.println("RC : Reply Mail");
     }
@@ -43,9 +42,8 @@ public class ReusableComponents
     {
     	System.out.println("RC : Forward Mail");
     }
-    public void delete()
+    void delete()
     {
     	System.out.println("RC : Delete Mail");
     }
-
 }

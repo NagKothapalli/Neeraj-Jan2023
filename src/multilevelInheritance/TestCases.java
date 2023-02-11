@@ -1,20 +1,22 @@
-package simpleInheritance;
+package multilevelInheritance;
 
 import org.junit.Test;
+
 //              child            parent
-public class TestCases extends ReusableComponents
-{
+public class TestCases extends ReusableComponents {
+
 	/*
 	 * public void launchApplication() {
-	 * System.out.println("RC : Launch Application from TC"); //all steps to launch
+	 * System.out.println("RC : Launch Application from TC"); // all steps to launch
 	 * has to be written here }
 	 */
-	//**********************Test Cases ***************************
+
+	// **********************Test Cases ***************************
 	@Test
-	public void composeAndSendAnEmail()  // A
+	public void composeAndSendAnEmail() // A
 	{
 		System.out.println("Test Case : ComposeAndSendAnEmail ");
-		//launch 5 steps, login 6 steps , compose , send , logout , close
+		// launch 5 steps, login 6 steps , compose , send , logout , close
 		launchApplication();
 		loginToApplication();
 		compose();
@@ -22,11 +24,12 @@ public class TestCases extends ReusableComponents
 		logoutFromApplication();
 		closeApplication();
 	}
+
 	@Test
 	public void replyToAnEmail() // B
 	{
 		System.out.println("Test Case : ReplyToAnEmail ");
-		//launch 5 steps , login 6 steps , open , reply , logout , close
+		// launch 5 steps , login 6 steps , open , reply , logout , close
 		launchApplication();
 		loginToApplication();
 		open();
@@ -34,11 +37,12 @@ public class TestCases extends ReusableComponents
 		logoutFromApplication();
 		closeApplication();
 	}
+
 	@Test
 	public void forwardAnEmail() // C
 	{
 		System.out.println("Test Case : ForwardAnEmail ");
-		//launch 5 steps , login 6 steps , compose , reply , logout , close
+		// launch 5 steps , login 6 steps , compose , reply , logout , close
 		launchApplication();
 		loginToApplication();
 		open();
@@ -46,11 +50,12 @@ public class TestCases extends ReusableComponents
 		logoutFromApplication();
 		closeApplication();
 	}
+
 	@Test
 	public void deleteAnEmail() // D
 	{
 		System.out.println("Test Case : DeleteAnEmail ");
-		//launch 5 steps , login 6 steps , compose , reply , logout , close
+		// launch 5 steps , login 6 steps , compose , reply , logout , close
 		launchApplication();
 		loginToApplication();
 		open();
