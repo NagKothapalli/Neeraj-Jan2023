@@ -1,6 +1,6 @@
 package interfaceConcept;
 
-public class ScientificCalculator implements ArithmeticOperations
+public class ScientificCalculator implements ArithmeticOperations  // Trigonametric , Algebraic
 {
 	public void welcomeMsg()
 	{
