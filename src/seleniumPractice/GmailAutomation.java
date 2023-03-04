@@ -18,7 +18,9 @@ public class GmailAutomation
 	
 	//junit.framework.ComparisonFailure: expected:<[A]mail> but was:<[G]mail>
 	
-	//WebDriver : get(), getTitle , getCurrentUrl , getWindowHandle , findElement ,
+	//WebDriver : get(), getTitle , getCurrentUrl , getWindowHandle , findElement ,findElements
+	//By : id , name , className , linkText , partialLinkText , tagName , xpath
+	//xpath : XML path
 	WebDriver driver;
 	String expectedTitle = "Gmail";
 	public GmailAutomation() //default constructor
@@ -75,13 +77,65 @@ public class GmailAutomation
 	@Test
 	public void createAccount()
 	{
-		//List<WebElement> elements = driver.findElements(By.className("VfPpkd-vQzf8d"));
+		List<WebElement> elements = driver.findElements(By.className("VfPpkd-vQzf8d"));
+		for(int i=0;i<elements.size();i++)
+		{
+			String txt = elements.get(i).getText(); // lastname
+			System.out.println("Text on the element :" + txt);
+			if(txt.equals("Create account")) {
+				elements.get(i).click();
+				break;
+			}
+		}
 		//WebElement element = elements.get(2);
 		//element.click();
-		driver.findElements(By.className("VfPpkd-vQzf8d")).get(2).click();
+		//driver.findElements(By.className("VfPpkd-vQzf8d")).get(2).click();
+	}
+	//XPATH : 
+	  //Type1 : Absolute / Fixed / Static / Full 
+	  //Type2 : Relative xpath  - is just like SQL select
+	
+	//tagName[@attribute='value']
+	
+	//tagName[text()='value']
+	
+	//tagName[@attribute='value'  and  text()='txt']
+	
+	//tagName[@attribute1='value' and @attribute2='value']
+	
+	@Test
+	public void forgotEmail()
+	{
+		//driver.findElement(By.tagName("button")).click();
+		//driver.findElements(By.tagName("button")).get(0).click();
+		//getText , getAttribute
+		/*
+		 * List<WebElement> elements = driver.findElements(By.tagName("button"));
+		 * for(int i=0;i<elements.size();i++) { String txt = elements.get(i).getText();
+		 * // lastname if(txt.equals("Forgot email?")) { elements.get(i).click(); break;
+		 * } }
+		 */
+	//	/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[1]/div/form/span/section/div/div/div[3]/button
+	  // driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[1]/div/form/span/section/div/div/div[3]/button")).click();
+	   //driver.findElement(By.xpath("//button[@jsname='Cuz2Ue']")).click();
+		driver.findElement(By.xpath("//button[text()='Forgot email?']")).click();
+	   //select element from elementstab where tagname=button and jsname=Cuz2Ue
+	   //select empName from EmployeesTable where EmpID=1234 and Dept=RD
 	}
 	
-	
+	@Test
+	public void learnMore()
+	{
+		//driver.findElement(By.linkText("Learn more")).click();
+		driver.findElement(By.partialLinkText("Learn")).click();
+		
+		/*
+		 * List<WebElement> elements = driver.findElements(By.tagName("a")); for(int
+		 * i=0;i<elements.size();i++) { String txt = elements.get(i).getText(); //
+		 * lastname System.out.println("Text on the element :" + txt);
+		 * if(txt.equals("Learn more")) { elements.get(i).click(); break; } }
+		 */
+	}
 	
 	
 	
