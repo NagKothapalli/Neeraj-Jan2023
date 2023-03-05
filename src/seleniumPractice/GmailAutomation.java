@@ -18,8 +18,10 @@ public class GmailAutomation
 	
 	//junit.framework.ComparisonFailure: expected:<[A]mail> but was:<[G]mail>
 	
-	//WebDriver : get(), getTitle , getCurrentUrl , getWindowHandle , findElement ,findElements
+	//WebDriver : get(), getTitle , getCurrentUrl , getWindowHandle , getWindowHandles ,findElement ,findElements
+	//WebElement : click , clear , sendkeys
 	//By : id , name , className , linkText , partialLinkText , tagName , xpath
+	//Actions : keyboard actions and mouse actions
 	//xpath : XML path
 	WebDriver driver;
 	String expectedTitle = "Gmail";
@@ -65,7 +67,11 @@ public class GmailAutomation
 		//driver.findElement(By.name("identifier")).sendKeys("abcdfsdffg");
 		//driver.findElement(By.name("identifier")).clear();
 		//driver.findElement(By.name("identifier")).sendKeys("9959775757");
-		WebElement email = driver.findElement(By.name("identifier"));
+		// ------ /html/body/div[1]/div[1]/div[2]/div/c-wiz/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[1]/div/div[1]/input
+		//*[@id="identifierId"]
+		//WebElement email = driver.findElement(By.name("identifier"));
+		//input[@name='identifier' or  @id='identifierId']
+		WebElement email = driver.findElement(By.xpath("//input[@name='identifier' and  @id='identifierId']"));
 		email.click();
 		email.sendKeys("dfdsfsds");
 		email.clear();
@@ -102,6 +108,39 @@ public class GmailAutomation
 	//tagName[@attribute='value'  and  text()='txt']
 	
 	//tagName[@attribute1='value' and @attribute2='value']
+	
+	//tagName[@attribute='value'  and  text()='txt']
+	
+	//tagName[@attribute='green' or @attribute='red']
+	
+	    //tagName[contains(@attribute,'sdsads')]
+	
+		//tagName[contains(text(),'value')]
+		
+		//tagName[contains(@attribute,'value')  and  text()='txt']
+		
+		//tagName[contains(@attribute1,'value') and @attribute2='value']
+	//--
+	//*[@attribute='value']
+	
+		//*[text()='value']
+		
+		//*[@attribute='value'  and  text()='txt']
+		
+		//*[@attribute1='value' and @attribute2='value']
+		
+		//*[@attribute='value'  and  text()='txt']
+		
+		//*[@attribute='green' or @attribute='red']
+		
+		    //*[contains(@attribute,'sdsads')]
+		
+			//*[contains(text(),'value')]
+			
+			//*[contains(@attribute,'value')  and  text()='txt']
+			
+			//*[contains(@attribute1,'value') and @attribute2='value']
+	
 	
 	@Test
 	public void forgotEmail()
