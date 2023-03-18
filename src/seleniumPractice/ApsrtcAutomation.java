@@ -1,7 +1,11 @@
 package seleniumPractice;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Set;
 
 import org.junit.Before;
@@ -15,26 +19,42 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ApsrtcAutomation
+public class ApsrtcAutomation //extends WebDriverUtilities
 {
 	WebDriver driver;
 	Actions actions;
 	String expectedTitle = "Gmail";
+	WebDriverUtilities dUtils;
 	public ApsrtcAutomation() //default constructor
 	{
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\JarFiles\\chromedriver-win32-90\\chromedriver.exe");
 		driver = new ChromeDriver();//it will open an empty chrome browser  //1234
 		actions = new Actions(driver); //1234
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		dUtils = new WebDriverUtilities(driver);
 	}
 	//Execution Flow : Class Variables -> Constructor -> Before -> Test	
 	@Before
-	public void launchApplication()
+	public void launchApplication() throws IOException
 	{
 		System.out.println("Launch Application");
 		//open an empty browser  then call your app URL in that browser		
-		driver.get("https://www.apsrtconline.in/"); //1234
+		//driver.get("https://www.apsrtconline.in/");//Hardcode value //1234
+		driver.get(ReadPropertiesData.readData("URL"));
 	}
+	@Test
+	public void readInputDate() throws IOException
+	{
+		FileInputStream myfile = new FileInputStream("TestData/DevData.properties");//news papaer
+		Properties prop = new Properties(); // news reader
+		prop.load(myfile);
+		String a = prop.getProperty("URL");
+		System.out.println(a);
+		System.out.println(prop.getProperty("FromCity"));
+		System.out.println(prop.getProperty("ToCity"));
+		System.out.println(prop.getProperty("JDate"));
+	}
+	
 	@Test
 	public void bookBusTicket()
 	{
@@ -64,13 +84,13 @@ public class ApsrtcAutomation
 	@Test
 	public void bookBusTicket2()
 	{
-		enterText("//input[@name='source']","HYDERABAD");
-		clickEnter();
-		enterText("//input[@name='destination']","GUNTUR");
-		clickEnter();
-		clickElement("//input[@name='txtJourneyDate']");
-		clickElement("//a[text()='20']");
-		clickElement("//input[@title='Search']");
+		dUtils.enterText("//input[@name='source']","HYDERABAD");
+		dUtils.clickEnter();
+		dUtils.enterText("//input[@name='destination']","GUNTUR");
+		dUtils.clickEnter();
+		dUtils.clickElement("//input[@name='txtJourneyDate']");
+		dUtils.clickElement("//a[text()='20']");
+		dUtils.clickElement("//input[@title='Search']");
 	}
 	//page object model
 	String sourceXpath = "//input[@name='source']";
@@ -83,15 +103,21 @@ public class ApsrtcAutomation
 	String allServicesXpath = "//a[text()='All services Time Table & Tracking']";
 	
 	@Test
-	public void bookBusTicket3()
+	public void bookBusTicket3() throws IOException
 	{
-		enterText(sourceXpath,"HYDERABAD");
-		clickEnter();
-		enterText(destinationXpath,"GUNTUR");
-		clickEnter();
-		clickElement(openCalendarXpath);
-		clickElement(jDateXpath);
-		clickElement(searchBtnXpath);
+		//ReadPropertiesData.readData("URL");
+		System.out.println(ReadPropertiesData.readData("FromCity"));
+		dUtils.enterText(sourceXpath,ReadPropertiesData.readData("FromCity"));
+		dUtils.clickEnter();
+		dUtils.enterText(destinationXpath,ReadPropertiesData.readData("ToCity"));
+		dUtils.clickEnter();
+		dUtils.clickElement(openCalendarXpath);
+		//String d = readDate("JDate");
+					//		"//a[text()='20']"
+		//String jDateXpath = "//a[text()='"+d+"']"; 
+		String jDateXpath = "//a[text()='"+ReadPropertiesData.readData("JDate")+"']";
+		dUtils.clickElement(jDateXpath);
+		dUtils.clickElement(searchBtnXpath);
 	}
 	@Test
 	public void keyboardAndMouseOperations()
@@ -108,8 +134,8 @@ public class ApsrtcAutomation
 	@Test
 	public void handleMultipleWindows()
 	{
-		clickElement(timeTableXpath);
-		clickElement(allServicesXpath);
+		dUtils.clickElement(timeTableXpath);
+		dUtils.clickElement(allServicesXpath);
 		Set<String> windows = driver.getWindowHandles();
 		ArrayList<String> allwindows = new ArrayList<String>(windows); 
 		for(int i=0;i<allwindows.size();i++)
@@ -124,34 +150,11 @@ public class ApsrtcAutomation
 		driver.switchTo().window(allwindows.get(0));
 		actions.pause(Duration.ofSeconds(2)).build().perform();
 		System.out.println("First title :" + driver.getTitle());
-		clickElement(homeXpath);	
+		dUtils.clickElement(homeXpath);	
 		driver.quit(); 
 	}
 	
-	//--------------generic / utility functions-------------------
-	public void clickElement(String myxpath)
-	{
-		//actions.pause(Duration.ofSeconds(4)).build().perform();//fixed wait
-		//Explicit - we can wait for specific object/webelement dynamically
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(myxpath))));
-		actions.moveToElement(element).click().build().perform();
-		//driver.findElement(By.xpath(myxpath)).click();
-	}
 	
-	public void enterText(String myxpath,String text)
-	{
-		//actions.pause(Duration.ofSeconds(4)).build().perform(); //fixed wait
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(myxpath))));
-		//driver.findElement(By.xpath(myxpath)).sendKeys(text);
-		actions.moveToElement(element).sendKeys(text).build().perform();
-	}
-	
-	public void clickEnter()
-	{
-		actions.pause(Duration.ofSeconds(1)).sendKeys(Keys.ENTER).build().perform();
-	}
 	
 	
 	
